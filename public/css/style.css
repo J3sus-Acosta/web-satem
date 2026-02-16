@@ -9,6 +9,7 @@
     --bg-body: #231f1f;
     --bg-card: #2d2a2a;
     /* Slightly lighter than body */
+    --white: #ffffff;
     --text: #ffffff;
     --text-muted: #9ca3af;
 
@@ -167,6 +168,24 @@ ul {
 .btn-block {
     display: block;
     width: 100%;
+}
+
+.btn-specialist {
+    background: #004c77;
+    color: var(--white);
+    border: 2px solid #004c77;
+}
+
+.btn-specialist:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 76, 119, 0.4);
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Hero Section */
