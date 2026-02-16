@@ -491,7 +491,7 @@ ul {
 
 /* Contact */
 .contact-section {
-    background: url('/img/bg-tech.jpg') center/cover;
+    background: #231f1f;
     position: relative;
 }
 
