@@ -70,22 +70,22 @@
         <div class="container">
             <h2 class="section-title text-center">Nuestros Servicios</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card service-consultoria">
                     <i data-lucide="cpu" class="service-icon"></i>
                     <h3>Consultoría TI</h3>
                     <p>Estrategias tecnológicas alineadas a tus objetivos de negocio.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card service-ia">
                     <i data-lucide="bot" class="service-icon"></i>
                     <h3>Automatización IA</h3>
                     <p>Implementación de agentes inteligentes para optimizar procesos.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card service-mesa">
                     <i data-lucide="headphones" class="service-icon"></i>
                     <h3>Mesa de Ayuda</h3>
                     <p>Soporte técnico empresarial rápido y eficiente.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card service-integraciones">
                     <i data-lucide="network" class="service-icon"></i>
                     <h3>Integraciones</h3>
                     <p>Conectamos tu ERP, CRM y herramientas favoritas.</p>
@@ -162,26 +162,15 @@
                         <p><i data-lucide="phone"></i> +56 9 7190 7865</p>
                     </div>
                 </div>
-                <form class="contact-form" action="mailto:contacto@satemsoluciones.com" method="post"
-                    enctype="text/plain">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" name="name" required placeholder="Tu nombre">
-                    </div>
-                    <div class="form-group">
-                        <label>Empresa</label>
-                        <input type="text" name="company" placeholder="Nombre de tu empresa">
-                    </div>
-                    <div class="form-group">
-                        <label>Email Corporativo</label>
-                        <input type="email" name="email" required placeholder="nombre@empresa.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Mensaje</label>
-                        <textarea name="message" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Agendar Consultoría</button>
-                </form>
+                <div class="contact-form-replacement"
+                    style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Si prefiere, puede enviarnos un correo
+                        electrónico directamente desde su cliente de correo favorito.</p>
+                    <a href="mailto:contacto@satemsoluciones.com" class="btn btn-primary btn-block"
+                        style="text-align: center;">
+                        <i data-lucide="mail" style="vertical-align: middle; margin-right: 8px;"></i> Enviar Correo
+                    </a>
+                </div>
             </div>
         </div>
     </section>

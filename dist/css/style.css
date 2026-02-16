@@ -9,6 +9,7 @@
     --bg-body: #231f1f;
     --bg-card: #2d2a2a;
     /* Slightly lighter than body */
+    --white: #ffffff;
     --text: #ffffff;
     --text-muted: #9ca3af;
 
@@ -169,6 +170,24 @@ ul {
     width: 100%;
 }
 
+.btn-specialist {
+    background: #004c77;
+    color: var(--white);
+    border: 2px solid #004c77;
+}
+
+.btn-specialist:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 76, 119, 0.4);
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -314,11 +333,35 @@ ul {
     transition: all 0.3s ease;
     border-bottom: 4px solid transparent;
     border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Ensure text is above background */
+    z-index: 1;
+}
+
+/* Service Backgrounds with dark overlay */
+.service-consultoria {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080');
+}
+
+.service-ia {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1080');
+}
+
+.service-mesa {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1080');
+}
+
+.service-integraciones {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1080');
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    border-bottom-color: var(--primary);
+    border-bottom-color: #004c77;
 }
 
 .service-icon {
