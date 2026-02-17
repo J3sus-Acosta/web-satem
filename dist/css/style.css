@@ -219,6 +219,7 @@ ul {
 .btn-icon {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 
@@ -378,19 +379,19 @@ ul {
 
 /* Service Backgrounds with dark overlay */
 .service-consultoria {
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080');
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/img/consulting.jpg');
 }
 
 .service-ia {
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1080');
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/img/automation.jpg');
 }
 
 .service-mesa {
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1080');
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/img/mesa-ayuda-bg.jpg');
 }
 
 .service-integraciones {
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1080');
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/img/integracion.jpg');
 }
 
 .service-card:hover {
@@ -407,7 +408,7 @@ ul {
 
 /* AI Feature */
 .feature-section {
-    background: var(--secondary);
+    background: var(--gradient-hero);
     color: var(--white);
 }
 
@@ -608,6 +609,13 @@ footer {
     opacity: 0.8;
 }
 
+.footer-slogan {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
 .footer-links li {
     margin-bottom: 0.5rem;
 }
@@ -627,6 +635,130 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
     opacity: 0.6;
+}
+
+/* Tech Stack Section */
+.tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tech-logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tech-logo-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(0, 186, 178, 0.2);
+}
+
+.tech-logo-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.tech-logo-item:hover img {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+.tech-logo-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+}
+
+/* Testimonials Section */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 186, 178, 0.15);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.testimonial-rating .star-filled {
+    width: 20px;
+    height: 20px;
+    color: #fbbf24;
+    fill: #fbbf24;
+}
+
+.testimonial-content {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--text-muted);
+    flex-grow: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.author-avatar i {
+    width: 24px;
+    height: 24px;
+    color: var(--white);
+}
+
+.author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+}
+
+.author-info p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 /* Animations */
