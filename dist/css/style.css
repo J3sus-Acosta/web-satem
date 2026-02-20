@@ -310,6 +310,10 @@ ul {
     display: inline-block;
 }
 
+.section-title.text-center {
+    display: block;
+}
+
 /* Grid System */
 .grid-2 {
     display: grid;
@@ -870,5 +874,10 @@ footer {
 
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        display: block;
+        text-align: center;
     }
 }
