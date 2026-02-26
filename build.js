@@ -35,6 +35,20 @@ async function build() {
         await fs.outputFile(outputPath, html);
         console.log('Generated index.html');
 
+        // 4. Render policy.ejs to policy.html
+        const policyTemplatePath = path.join(viewsDir, 'policy.ejs');
+        const policyOutputPath = path.join(distDir, 'policy.html');
+
+        const policyHtml = await ejs.renderFile(policyTemplatePath, {
+            ...data,
+            title: 'Política de Privacidad | SATEM Soluciones Inteligentes',
+            path: '/policy',
+            filename: policyTemplatePath
+        });
+
+        await fs.outputFile(policyOutputPath, policyHtml);
+        console.log('Generated policy.html');
+
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
     } catch (err) {

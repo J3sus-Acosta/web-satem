@@ -810,6 +810,7 @@ footer {
     /* Mobile menu simplified */
     .mobile-menu-btn {
         display: block;
+        color: var(--white);
     }
 
     .hero {
