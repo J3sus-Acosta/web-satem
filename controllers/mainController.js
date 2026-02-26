@@ -5,6 +5,13 @@ exports.getIndex = (req, res) => {
     });
 };
 
+exports.getPolicy = (req, res) => {
+    res.render('policy', {
+        title: 'Política de Privacidad | SATEM Soluciones Inteligentes',
+        path: '/policy'
+    });
+};
+
 exports.postContact = (req, res) => {
     // Here we would handle form submission (e.g., sending email with nodemailer)
     // For now, we just redirect back to home with a success query param
