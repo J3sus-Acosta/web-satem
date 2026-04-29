@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Consultoría Agendada! | SATEM Soluciones Inteligentes</title>
+    <meta name="description"
+        content="Gracias por agendar tu consultoría con SATEM. Aquí encontrarás las instrucciones para tu sesión y casos de éxito de nuestros clientes.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/img/site.webmanifest" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Base -->
+    <link rel="stylesheet" href="/css/style.css?v=3">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ============================================
+           THANK YOU PAGE — CUSTOM STYLES
+        ============================================ */
+
+        /* --- Hero de agradecimiento --- */
+        .ty-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 1.5rem 4rem;
+        }
+
+        .ty-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .ty-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        /* Checkmark animado */
+        .ty-check-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .ty-check {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .ty-check svg {
+            width: 44px;
+            height: 44px;
+            stroke: #fff;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .ty-hero h1 {
+            font-family: 'Baloo 2', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ty-hero p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* --- Sección de instrucciones --- */
+        .instructions-section {
+            padding: 4rem 1.5rem;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, #818cf8 100%);
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+        }
+
+        .step-card h3 {
+            font-family: 'Baloo 2', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            opacity: 0.75;
+            line-height: 1.6;
+        }
+
+        /* --- Sección Casos de Éxito --- */
+        .success-section {
+            padding: 5rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .success-header h2 {
+            font-family: 'Baloo 2', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+
+        .success-header p {
+            font-size: 1.05rem;
+            opacity: 0.75;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Reutilizamos clases del CSS base para las tarjetas */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* --- CTA final --- */
+        .ty-cta {
+            padding: 5rem 1.5rem;
+            text-align: center;
+        }
+
+        .ty-cta h2 {
+            font-family: 'Baloo 2', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .ty-cta p {
+            font-size: 1rem;
+            opacity: 0.75;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Animación de entrada escalonada */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(28px);
+            animation: fadeInUp 0.7s ease forwards;
+        }
+
+        .fade-in-up.delay-1 { animation-delay: 0.15s; }
+        .fade-in-up.delay-2 { animation-delay: 0.30s; }
+        .fade-in-up.delay-3 { animation-delay: 0.45s; }
+        .fade-in-up.delay-4 { animation-delay: 0.60s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive navbar simplificada */
+        .ty-nav {
+            padding: 1rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar mínima -->
+    <nav class="navbar glass ty-nav">
+        <div class="container navbar-content">
+            <div class="logo-group">
+                <a href="/" class="logo">
+                    <img src="/img/logo.png" alt="SATEM Soluciones Inteligentes" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Volver al inicio</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ============ HERO DE AGRADECIMIENTO ============ -->
+        <section class="ty-hero">
+            <div class="ty-hero-content">
+
+                <div class="ty-check-wrapper fade-in-up">
+                    <div class="ty-check">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 class="fade-in-up delay-1">¡Tu consultoría está agendada!</h1>
+
+                <p class="fade-in-up delay-2">
+                    Gracias por confiar en <strong>SATEM Soluciones Inteligentes</strong>.
+                    Revisa tu correo: te enviamos la confirmación con todos los detalles.
+                    Mientras tanto, te dejamos los pasos para que tu sesión sea un éxito.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ============ INSTRUCCIONES ============ -->
+        <section class="instructions-section">
+            <div class="container">
+                <h2 class="section-title text-center fade-in-up">¿Qué sigue ahora?</h2>
+                <p class="text-center fade-in-up delay-1"
+                    style="opacity:0.75; max-width:600px; margin:0 auto; font-size:1.05rem;">
+                    Sigue estos pasos para aprovechar al máximo tu consultoría gratuita.
+                </p>
+
+                <div class="instructions-grid">
+
+                    <div class="step-card fade-in-up delay-1">
+                        <div class="step-number">1</div>
+                        <h3>Revisa tu correo</h3>
+                        <p>Recibirás un correo de confirmación con el enlace de videollamada, la fecha y la hora exacta de tu sesión.</p>
+                    </div>
+
+                    <div class="step-card fade-in-up delay-2">
+                        <div class="step-number">2</div>
+                        <h3>Prepara tus preguntas</h3>
+                        <p>Anota los principales desafíos de tu empresa: procesos lentos, sistemas desconectados, tareas repetitivas. Cuanto más detallado, mejor.</p>
+                    </div>
+
+                    <div class="step-card fade-in-up delay-3">
+                        <div class="step-number">3</div>
+                        <h3>Únete 5 min antes</h3>
+                        <p>Entra al enlace de la reunión con 5 minutos de anticipación para verificar tu audio y video. La puntualidad nos permite aprovechar al máximo el tiempo.</p>
+                    </div>
+
+                    <div class="step-card fade-in-up delay-4">
+                        <div class="step-number">4</div>
+                        <h3>Recibe tu propuesta</h3>
+                        <p>Después de la sesión recibirás un diagnóstico personalizado con las soluciones que mejor se adaptan a tu empresa.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CASOS DE ÉXITO ============ -->
+        <section class="success-section">
+            <div class="container">
+
+                <div class="success-header">
+                    <h2>Casos de Éxito</h2>
+                    <p>Lo que dicen nuestros clientes sobre nuestros servicios y los resultados que lograron.</p>
+                </div>
+
+                <div class="testimonials-grid">
+
+                    <div class="testimonial-card card-glass fade-in-up delay-1">
+                        <div class="testimonial-rating">
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            "SATEM transformó completamente nuestra operación. La automatización de procesos nos permitió
+                            reducir tiempos en un 40% y mejorar la satisfacción de nuestros clientes."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>María González</h4>
+                                <p>Gerente de Operaciones, TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card card-glass fade-in-up delay-2">
+                        <div class="testimonial-rating">
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            "La implementación de IA en nuestro servicio al cliente fue un éxito rotundo. Ahora atendemos
+                            consultas 24/7 con respuestas precisas y rápidas."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Carlos Ramírez</h4>
+                                <p>Director de TI, Innovatech</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card card-glass fade-in-up delay-3">
+                        <div class="testimonial-rating">
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                            <i data-lucide="star" class="star-filled"></i>
+                        </div>
+                        <p class="testimonial-content">
+                            "Excelente servicio de consultoría. Nos ayudaron a integrar todos nuestros sistemas y ahora
+                            tenemos una visión completa de nuestro negocio en tiempo real."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Ana Martínez</h4>
+                                <p>CEO, DataSolutions</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA FINAL ============ -->
+        <section class="ty-cta">
+            <div class="container">
+                <h2 class="fade-in-up">¿Tienes alguna duda antes de la sesión?</h2>
+                <p class="fade-in-up delay-1">Escríbenos por WhatsApp o correo, respondemos rápido.</p>
+                <div class="cta-buttons fade-in-up delay-2">
+                    <a href="https://wa.me/qr/FPNOTOMW5ZMLL1" target="_blank" class="btn btn-primary btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        Escribir por WhatsApp
+                    </a>
+                    <a href="mailto:contacto@satemsoluciones.com" class="btn btn-specialist btn-icon">
+                        <i data-lucide="mail"></i>
+                        Enviar correo
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <img src="/img/logo.png" alt="SATEM Soluciones Inteligentes" class="logo-img footer-logo">
+                <h3 class="footer-slogan">Si no Existe, Lo Creamos...</h3>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="/">Consultoría TI</a></li>
+                    <li><a href="/">Automatización IA</a></li>
+                    <li><a href="/">Mesa de Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li>contacto@satemsoluciones.com</li>
+                    <li>+56 9 7190 7865</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SATEM Soluciones Inteligentes. Todos los derechos reservados.</p>
+            <p><a href="/policy.html"
+                    style="color: var(--text-muted); text-decoration: underline; font-size: 0.8rem;">Política de
+                    Privacidad</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

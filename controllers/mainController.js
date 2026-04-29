@@ -12,6 +12,13 @@ exports.getPolicy = (req, res) => {
     });
 };
 
+exports.getGracias = (req, res) => {
+    res.render('gracias', {
+        title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes',
+        path: '/gracias'
+    });
+};
+
 exports.postContact = (req, res) => {
     // Here we would handle form submission (e.g., sending email with nodemailer)
     // For now, we just redirect back to home with a success query param
