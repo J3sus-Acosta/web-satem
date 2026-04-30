@@ -156,27 +156,37 @@
     </section>
 
     <!-- CTA / Contact -->
+    <style>
+        .calendly-inline-widget { border-radius: 16px; overflow: hidden; }
+        .contact-header-meta {
+            display: flex; gap: 1.5rem; justify-content: center;
+            flex-wrap: wrap; font-size: 0.95rem; opacity: 0.7; margin-top: 0.8rem;
+        }
+        .contact-header-meta span { display: flex; align-items: center; gap: 0.4rem; }
+        .contact-header-meta svg { width: 16px; height: 16px; flex-shrink: 0; }
+    </style>
     <section id="contacto" class="section contact-section">
         <div class="container">
-            <div class="contact-wrapper card-glass">
-                <div class="contact-info">
-                    <h2>¿Listo para transformar tu empresa?</h2>
-                    <p>Agenda una consultoría gratuita hoy mismo. Cupos limitados por agenda semanal.</p>
-                    <div class="contact-details">
-                        <p><i data-lucide="mail"></i> contacto@satemsoluciones.com</p>
-                        <p><i data-lucide="phone"></i> +56 9 7190 7865</p>
-                    </div>
-                </div>
-                <div class="contact-form-replacement"
-                    style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-                    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Si prefiere, puede enviarnos un correo
-                        electrónico directamente desde su cliente de correo favorito.</p>
-                    <a href="mailto:contacto@satemsoluciones.com" class="btn btn-primary btn-block"
-                        style="text-align: center;">
-                        <i data-lucide="mail" style="vertical-align: middle; margin-right: 8px;"></i> Enviar correo
-                    </a>
+
+            <!-- Encabezado compacto centrado -->
+            <div style="text-align:center; margin-bottom:2.5rem;">
+                <h2 style="font-family:'Baloo 2',sans-serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:800; color:#fff; margin-bottom:0.6rem;">
+                    ¿Listo para transformar tu empresa?
+                </h2>
+                <p style="font-size:1.05rem; opacity:0.75; margin-bottom:1rem;">
+                    Agenda una consultoría gratuita hoy mismo. Cupos limitados por agenda semanal.
+                </p>
+                <div class="contact-header-meta">
+                    <span><i data-lucide="mail"></i> contacto@satemsoluciones.com</span>
+                    <span><i data-lucide="phone"></i> +56 9 7190 7865</span>
                 </div>
             </div>
+
+            <!-- Calendly a ancho completo → activa layout dividido automáticamente -->
+            <div class="calendly-inline-widget"
+                data-url="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1"
+                style="min-width:320px; height:700px;"></div>
+
         </div>
     </section>
 
