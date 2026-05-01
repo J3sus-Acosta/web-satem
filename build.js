@@ -49,6 +49,20 @@ async function build() {
         await fs.outputFile(policyOutputPath, policyHtml);
         console.log('Generated policy.html');
 
+        // 5. Render gracias.ejs to gracias.html
+        const graciasTemplatePath = path.join(viewsDir, 'gracias.ejs');
+        const graciasOutputPath = path.join(distDir, 'gracias.html');
+
+        const graciasHtml = await ejs.renderFile(graciasTemplatePath, {
+            ...data,
+            title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes',
+            path: '/gracias',
+            filename: graciasTemplatePath
+        });
+
+        await fs.outputFile(graciasOutputPath, graciasHtml);
+        console.log('Generated gracias.html');
+
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
     } catch (err) {

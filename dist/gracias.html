@@ -1,4 +1,54 @@
-<%- include('layout-gracias', {title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes' , body: ` <style>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        ¡Consultoría Agendada! | SATEM Soluciones Inteligentes
+    </title>
+    <meta name="description"
+        content="SATEM Soluciones Inteligentes - Consultoría TI, Automatización IA y Soporte Empresarial.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/img/site.webmanifest" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css?v=3">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Navbar simplificada (sin soporte ni menús) -->
+    <nav class="navbar glass">
+        <div class="container navbar-content">
+            <div class="logo-group">
+                <a href="/" class="logo">
+                    <img src="/img/logo.png" alt="SATEM Soluciones Inteligentes" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Volver al inicio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+         <style>
     /* ============================================
     THANK YOU PAGE — CUSTOM STYLES
     ============================================ */
@@ -470,4 +520,45 @@
         </div>
     </section>
 
-    `}) %>
+    
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <img src="/img/logo.png" alt="SATEM Soluciones Inteligentes" class="logo-img footer-logo">
+                <h3 class="footer-slogan">Si no Existe, Lo Creamos...</h3>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="/">Consultoría TI</a></li>
+                    <li><a href="/">Automatización IA</a></li>
+                    <li><a href="/">Mesa de Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li>contacto@satemsoluciones.com</li>
+                    <li>+56 9 7190 7865</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SATEM Soluciones Inteligentes. Todos los derechos reservados.</p>
+            <p><a href="/policy"
+                    style="color: var(--text-muted); text-decoration: underline; font-size: 0.8rem;">Política de
+                    Privacidad</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
