@@ -318,19 +318,6 @@
             background: #0f1117;
         }
 
-        /* Ocultar badge "Powered by Calendly" del iframe */
-        #calendly-badge-blocker {
-            position: absolute;
-            top: 58px; /* justo debajo del header */
-            right: 0;
-            width: 90px;
-            height: 90px;
-            background: #0f2e42;
-            z-index: 10;
-            pointer-events: none;
-            border-bottom-left-radius: 8px;
-        }
-
         /* Escaneo decorativo sobre el modal */
         #calendly-modal-box::before {
             content: '';
@@ -398,7 +385,6 @@
                 </div>
                 <button id="calendly-modal-close" onclick="closeCalendlyModal()" aria-label="Cerrar">&times;</button>
             </div>
-            <div id="calendly-badge-blocker" aria-hidden="true"></div>
             <iframe
                 id="calendly-modal-iframe"
                 src="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1&background_color=0f2e42&text_color=e2e8f0&primary_color=00bab2"
