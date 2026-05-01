@@ -155,16 +155,131 @@
         </div>
     </section>
 
-    <!-- CTA / Contact -->
+    <!-- Calendly Dark Modal Styles -->
     <style>
-        .calendly-inline-widget { border-radius: 16px; overflow: hidden; }
         .contact-header-meta {
             display: flex; gap: 1.5rem; justify-content: center;
             flex-wrap: wrap; font-size: 0.95rem; opacity: 0.7; margin-top: 0.8rem;
         }
         .contact-header-meta span { display: flex; align-items: center; gap: 0.4rem; }
         .contact-header-meta svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+        /* ── Botón Agendar (usa estilos globales .btn .btn-primary) ── */
+        #open-calendly-btn {
+            margin-top: 1.8rem;
+            font-size: 1rem;
+        }
+        #open-calendly-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+        /* ── Overlay / Modal ── */
+        #calendly-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #292525ff;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeOverlay 0.3s ease;
+        }
+        #calendly-modal-overlay.active { display: flex; }
+
+        @keyframes fadeOverlay {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        #calendly-modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: linear-gradient(135deg, #0f2e42 0%, #004d49 100%);
+            border: 1px solid rgba(0,186,178,0.35);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(0,186,178,0.15),
+                0 40px 80px rgba(0,0,0,0.7),
+                0 0 60px rgba(0,186,178,0.1) inset;
+            animation: slideModal 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes slideModal {
+            from { transform: translateY(40px) scale(0.96); opacity: 0; }
+            to   { transform: translateY(0) scale(1);      opacity: 1; }
+        }
+
+        #calendly-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.6rem;
+            background: rgba(0,186,178,0.08);
+            border-bottom: 1px solid rgba(0,186,178,0.25);
+        }
+
+        #calendly-modal-header .modal-title {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #00eae3;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #calendly-modal-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-size: 1.3rem;
+            line-height: 1;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        #calendly-modal-close:hover {
+            background: rgba(239,68,68,0.2);
+            color: #f87171;
+            transform: scale(1.1);
+        }
+
+        #calendly-modal-iframe {
+            width: 100%;
+            height: calc(90vh - 58px);
+            min-height: 500px;
+            border: none;
+            display: block;
+            background: #0f1117;
+        }
+
+        /* Escaneo decorativo sobre el modal */
+        #calendly-modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00bab2, #00eae3, #004d49, #00bab2);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+            z-index: 1;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
+
+    <!-- CTA / Contact -->
     <section id="contacto" class="section contact-section">
         <div class="container">
 
@@ -180,14 +295,69 @@
                     <span><i data-lucide="mail"></i> contacto@satemsoluciones.com</span>
                     <span><i data-lucide="phone"></i> +56 9 7190 7865</span>
                 </div>
-            </div>
 
-            <!-- Calendly a ancho completo → activa layout dividido automáticamente -->
-            <div class="calendly-inline-widget"
-                data-url="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1"
-                style="min-width:320px; height:700px;"></div>
+                <!-- Botón popup -->
+                <button id="open-calendly-btn" class="btn btn-primary btn-icon" onclick="openCalendlyModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Agendar consultoría gratuita
+                </button>
+            </div>
 
         </div>
     </section>
+
+    <!-- ── Modal Calendly Dark ── -->
+    <div id="calendly-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-text"
+        onclick="handleOverlayClick(event)">
+        <div id="calendly-modal-box">
+            <div id="calendly-modal-header">
+                <div class="modal-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span id="modal-title-text">Agendar Consultoría Gratuita</span>
+                </div>
+                <button id="calendly-modal-close" onclick="closeCalendlyModal()" aria-label="Cerrar">&times;</button>
+            </div>
+            <iframe
+                id="calendly-modal-iframe"
+                src="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1&background_color=0f2e42&text_color=e2e8f0&primary_color=00bab2"
+                title="Agendar consultoría con SATEM"
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        function openCalendlyModal() {
+            var overlay = document.getElementById('calendly-modal-overlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCalendlyModal() {
+            var overlay = document.getElementById('calendly-modal-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function handleOverlayClick(e) {
+            if (e.target === document.getElementById('calendly-modal-overlay')) {
+                closeCalendlyModal();
+            }
+        }
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCalendlyModal();
+        });
+    </script>
 
     `}) %>
