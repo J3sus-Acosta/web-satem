@@ -35,9 +35,9 @@ async function build() {
         await fs.outputFile(outputPath, html);
         console.log('Generated index.html');
 
-        // 4. Render policy.ejs to policy.html
+        // 4. Render policy.ejs to policy/index.html (clean URL: /policy)
         const policyTemplatePath = path.join(viewsDir, 'policy.ejs');
-        const policyOutputPath = path.join(distDir, 'policy.html');
+        const policyOutputPath = path.join(distDir, 'policy', 'index.html');
 
         const policyHtml = await ejs.renderFile(policyTemplatePath, {
             ...data,
@@ -47,11 +47,11 @@ async function build() {
         });
 
         await fs.outputFile(policyOutputPath, policyHtml);
-        console.log('Generated policy.html');
+        console.log('Generated policy/index.html');
 
-        // 5. Render gracias.ejs to gracias.html
+        // 5. Render gracias.ejs to gracias/index.html (clean URL: /gracias)
         const graciasTemplatePath = path.join(viewsDir, 'gracias.ejs');
-        const graciasOutputPath = path.join(distDir, 'gracias.html');
+        const graciasOutputPath = path.join(distDir, 'gracias', 'index.html');
 
         const graciasHtml = await ejs.renderFile(graciasTemplatePath, {
             ...data,
@@ -61,7 +61,7 @@ async function build() {
         });
 
         await fs.outputFile(graciasOutputPath, graciasHtml);
-        console.log('Generated gracias.html');
+        console.log('Generated gracias/index.html');
 
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
