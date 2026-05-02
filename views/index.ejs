@@ -349,6 +349,12 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeCalendlyModal();
         });
+        // Redirigir a /gracias cuando el usuario agenda exitosamente
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.event === 'calendly.event_scheduled') {
+                window.location.href = 'https://satemsoluciones.com/gracias';
+            }
+        });
     </script>
 
     `}) %>
