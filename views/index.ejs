@@ -322,7 +322,7 @@
             </div>
             <iframe
                 id="calendly-modal-iframe"
-                src="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1&background_color=0f2e42&text_color=e2e8f0&primary_color=00bab2"
+                data-src="https://calendly.com/jesus030687/nueva-consultoria?locale=es&hide_gdpr_banner=1&background_color=0f2e42&text_color=e2e8f0&primary_color=00bab2"
                 title="Agendar consultoría con SATEM"
                 loading="lazy">
             </iframe>
@@ -332,6 +332,11 @@
     <script>
         function openCalendlyModal() {
             var overlay = document.getElementById('calendly-modal-overlay');
+            var iframe = document.getElementById('calendly-modal-iframe');
+            if (!iframe.getAttribute('src')) {
+                var baseUrl = iframe.getAttribute('data-src');
+                iframe.setAttribute('src', baseUrl + "&embed_domain=" + window.location.hostname + "&embed_type=Inline");
+            }
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -351,8 +356,11 @@
         });
         // Redirigir a /gracias cuando el usuario agenda exitosamente
         window.addEventListener('message', function(e) {
+            // Verificar que el mensaje provenga de Calendly por seguridad
+            if (e.origin !== "https://calendly.com") return;
+
             if (e.data && e.data.event === 'calendly.event_scheduled') {
-                window.location.href = 'https://satemsoluciones.com/gracias';
+                window.location.href = '/gracias';
             }
         });
     </script>
