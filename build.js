@@ -35,33 +35,33 @@ async function build() {
         await fs.outputFile(outputPath, html);
         console.log('Generated index.html');
 
-        // 4. Render policy.ejs to policy/index.html (clean URL: /policy)
+        // 4. Render policy.ejs to policy.html
         const policyTemplatePath = path.join(viewsDir, 'policy.ejs');
-        const policyOutputPath = path.join(distDir, 'policy', 'index.html');
+        const policyOutputPath = path.join(distDir, 'policy.html');
 
         const policyHtml = await ejs.renderFile(policyTemplatePath, {
             ...data,
             title: 'Política de Privacidad | SATEM Soluciones Inteligentes',
-            path: '/policy',
+            path: '/policy.html',
             filename: policyTemplatePath
         });
 
         await fs.outputFile(policyOutputPath, policyHtml);
-        console.log('Generated policy/index.html');
+        console.log('Generated policy.html');
 
-        // 5. Render gracias.ejs to gracias/index.html (clean URL: /gracias)
+        // 5. Render gracias.ejs to gracias.html
         const graciasTemplatePath = path.join(viewsDir, 'gracias.ejs');
-        const graciasOutputPath = path.join(distDir, 'gracias', 'index.html');
+        const graciasOutputPath = path.join(distDir, 'gracias.html');
 
         const graciasHtml = await ejs.renderFile(graciasTemplatePath, {
             ...data,
             title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes',
-            path: '/gracias',
+            path: '/gracias.html',
             filename: graciasTemplatePath
         });
 
         await fs.outputFile(graciasOutputPath, graciasHtml);
-        console.log('Generated gracias/index.html');
+        console.log('Generated gracias.html');
 
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
