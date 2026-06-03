@@ -20,13 +20,13 @@ const upload = multer({
 
 // ── Rutas principales ──────────────────────────────────────────
 router.get('/', mainController.getIndex);
-router.get('/policy', mainController.getPolicy);
-router.get('/gracias', mainController.getGracias);
+router.get(['/policy', '/policy.html'], mainController.getPolicy);
+router.get(['/gracias', '/gracias.html'], mainController.getGracias);
 router.post('/contact', mainController.postContact);
 
 // ── Rutas de Soporte al Cliente ────────────────────────────────
-router.get('/soporte', supportController.getSoporte);
-router.get('/soporte/exito', supportController.getSoporteExito);
-router.post('/soporte', upload.single('adjunto'), supportController.postSoporte);
+router.get(['/soporte', '/soporte.html'], supportController.getSoporte);
+router.get(['/soporte/exito', '/soporte-exito', '/soporte-exito.html'], supportController.getSoporteExito);
+router.post(['/soporte', '/soporte.html'], upload.single('adjunto'), supportController.postSoporte);
 
 module.exports = router;

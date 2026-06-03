@@ -205,7 +205,7 @@ function buildEmailHTML(data, file) {
 exports.getSoporte = (req, res) => {
     res.render('soporte', {
         title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
-        path: '/soporte',
+        path: '/soporte.html',
     });
 };
 
@@ -215,7 +215,7 @@ exports.getSoporte = (req, res) => {
 exports.getSoporteExito = (req, res) => {
     res.render('soporte-exito', {
         title: 'Solicitud Recibida | SATEM Soluciones Inteligentes',
-        path: '/soporte/exito',
+        path: '/soporte-exito.html',
     });
 };
 
@@ -307,13 +307,13 @@ exports.postSoporte = async (req, res) => {
         await transporter.sendMail(mailOptions);
 
         console.log(`[SOPORTE] Ticket enviado correctamente. Solicitante: ${correo} | Empresa: ${empresa} | Asunto: ${asunto}`);
-        res.redirect('/soporte/exito');
+        res.redirect('/soporte-exito.html');
 
     } catch (err) {
         console.error('[SOPORTE] Error al enviar correo:', err.message || err);
         res.status(500).render('soporte', {
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
-            path: '/soporte',
+            path: '/soporte.html',
             errors: ['No se pudo enviar la solicitud. Por favor intente nuevamente o contáctenos directamente.'],
             formData: { nombre, correo, empresa, asunto, descripcion },
         });
