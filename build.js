@@ -63,6 +63,34 @@ async function build() {
         await fs.outputFile(graciasOutputPath, graciasHtml);
         console.log('Generated gracias.html');
 
+        // 6. Render soporte.ejs to soporte.html
+        const soporteTemplatePath = path.join(viewsDir, 'soporte.ejs');
+        const soporteOutputPath = path.join(distDir, 'soporte.html');
+
+        const soporteHtml = await ejs.renderFile(soporteTemplatePath, {
+            ...data,
+            title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
+            path: '/soporte.html',
+            filename: soporteTemplatePath
+        });
+
+        await fs.outputFile(soporteOutputPath, soporteHtml);
+        console.log('Generated soporte.html');
+
+        // 7. Render soporte-exito.ejs to soporte-exito.html
+        const soporteExitoTemplatePath = path.join(viewsDir, 'soporte-exito.ejs');
+        const soporteExitoOutputPath = path.join(distDir, 'soporte-exito.html');
+
+        const soporteExitoHtml = await ejs.renderFile(soporteExitoTemplatePath, {
+            ...data,
+            title: 'Solicitud Recibida | SATEM Soluciones Inteligentes',
+            path: '/soporte-exito.html',
+            filename: soporteExitoTemplatePath
+        });
+
+        await fs.outputFile(soporteExitoOutputPath, soporteExitoHtml);
+        console.log('Generated soporte-exito.html');
+
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
     } catch (err) {
