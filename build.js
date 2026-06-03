@@ -35,61 +35,61 @@ async function build() {
         await fs.outputFile(outputPath, html);
         console.log('Generated index.html');
 
-        // 4. Render policy.ejs to policy.html
+        // 4. Render policy.ejs to policy/index.html
         const policyTemplatePath = path.join(viewsDir, 'policy.ejs');
-        const policyOutputPath = path.join(distDir, 'policy.html');
+        const policyOutputPath = path.join(distDir, 'policy', 'index.html');
 
         const policyHtml = await ejs.renderFile(policyTemplatePath, {
             ...data,
             title: 'Política de Privacidad | SATEM Soluciones Inteligentes',
-            path: '/policy.html',
+            path: '/policy',
             filename: policyTemplatePath
         });
 
         await fs.outputFile(policyOutputPath, policyHtml);
-        console.log('Generated policy.html');
+        console.log('Generated policy/index.html');
 
-        // 5. Render gracias.ejs to gracias.html
+        // 5. Render gracias.ejs to gracias/index.html
         const graciasTemplatePath = path.join(viewsDir, 'gracias.ejs');
-        const graciasOutputPath = path.join(distDir, 'gracias.html');
+        const graciasOutputPath = path.join(distDir, 'gracias', 'index.html');
 
         const graciasHtml = await ejs.renderFile(graciasTemplatePath, {
             ...data,
             title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes',
-            path: '/gracias.html',
+            path: '/gracias',
             filename: graciasTemplatePath
         });
 
         await fs.outputFile(graciasOutputPath, graciasHtml);
-        console.log('Generated gracias.html');
+        console.log('Generated gracias/index.html');
 
-        // 6. Render soporte.ejs to soporte.html
+        // 6. Render soporte.ejs to soporte/index.html
         const soporteTemplatePath = path.join(viewsDir, 'soporte.ejs');
-        const soporteOutputPath = path.join(distDir, 'soporte.html');
+        const soporteOutputPath = path.join(distDir, 'soporte', 'index.html');
 
         const soporteHtml = await ejs.renderFile(soporteTemplatePath, {
             ...data,
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
-            path: '/soporte.html',
+            path: '/soporte',
             filename: soporteTemplatePath
         });
 
         await fs.outputFile(soporteOutputPath, soporteHtml);
-        console.log('Generated soporte.html');
+        console.log('Generated soporte/index.html');
 
-        // 7. Render soporte-exito.ejs to soporte-exito.html
+        // 7. Render soporte-exito.ejs to soporte/exito/index.html
         const soporteExitoTemplatePath = path.join(viewsDir, 'soporte-exito.ejs');
-        const soporteExitoOutputPath = path.join(distDir, 'soporte-exito.html');
+        const soporteExitoOutputPath = path.join(distDir, 'soporte', 'exito', 'index.html');
 
         const soporteExitoHtml = await ejs.renderFile(soporteExitoTemplatePath, {
             ...data,
             title: 'Solicitud Recibida | SATEM Soluciones Inteligentes',
-            path: '/soporte-exito.html',
+            path: '/soporte/exito',
             filename: soporteExitoTemplatePath
         });
 
         await fs.outputFile(soporteExitoOutputPath, soporteExitoHtml);
-        console.log('Generated soporte-exito.html');
+        console.log('Generated soporte/exito/index.html');
 
         console.log('Build complete! The "dist" folder is ready for deployment.');
 
