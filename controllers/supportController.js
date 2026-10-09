@@ -292,8 +292,12 @@ exports.postSoporte = async (req, res) => {
         });
     }
 
+    const fromAddress = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const fromName = process.env.SMTP_FROM_NAME || 'SATEM Soporte';
+    const fromHeader = fromAddress.includes('<') ? fromAddress : `"${fromName}" <${fromAddress}>`;
+
     const mailOptions = {
-        from: `"SATEM Soporte" <${process.env.SMTP_USER}>`,
+        from: fromHeader,
         to: helpdeskEmail,
         replyTo: correo,
         subject: `[SOPORTE] ${empresa} - ${asunto}`,
