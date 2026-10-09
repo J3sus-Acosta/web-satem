@@ -292,8 +292,8 @@ exports.postSoporte = async (req, res) => {
         });
     }
 
-    const fromAddress = process.env.SMTP_FROM || process.env.SMTP_USER;
-    const fromName = process.env.SMTP_FROM_NAME || 'SATEM Soporte';
+    const fromAddress = (process.env.SMTP_FROM || process.env.SMTP_USER || '').trim();
+    const fromName = (process.env.SMTP_FROM_NAME || 'SATEM Soporte').trim();
     const fromHeader = fromAddress.includes('<') ? fromAddress : `"${fromName}" <${fromAddress}>`;
 
     const mailOptions = {
@@ -308,9 +308,9 @@ exports.postSoporte = async (req, res) => {
     try {
         const transporter = createTransporter();
         await transporter.verify();
-        await transporter.sendMail(mailOptions);
+        const info = await transporter.sendMail(mailOptions);
 
-        console.log(`[SOPORTE] Ticket enviado correctamente. Solicitante: ${correo} | Empresa: ${empresa} | Asunto: ${asunto}`);
+        console.log(`[SOPORTE] Ticket enviado. Remitente: ${fromHeader} | Destinatario: ${helpdeskEmail} | Solicitante: ${correo} | MsgId: ${info.messageId}`);
         res.redirect('/soporte-exito.html');
 
     } catch (err) {
