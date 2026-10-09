@@ -303,6 +303,10 @@ exports.postSoporte = async (req, res) => {
         subject: `[SOPORTE] ${empresa} - ${asunto}`,
         html: buildEmailHTML({ nombre, correo, empresa, asunto, descripcion, fecha }, req.file),
         attachments,
+        headers: {
+            'X-Original-To': helpdeskEmail,
+            'Delivered-To': helpdeskEmail,
+        },
     };
 
     try {
