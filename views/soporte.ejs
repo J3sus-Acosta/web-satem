@@ -632,6 +632,12 @@
 
           <form id="soporte-form" action="/soporte" method="POST" enctype="multipart/form-data" novalidate>
 
+            <!-- ── Honeypot anti-spam (invisible para humanos, trampa para bots) ── -->
+            <div class="hp-field" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0; height: 0; opacity: 0; z-index: -1; pointer-events: none;">
+              <label for="form_website_hp">Sitio web (no completar este campo)</label>
+              <input type="text" id="form_website_hp" name="website" tabindex="-1" autocomplete="off" value="">
+            </div>
+
             <div class="form-grid-2">
 
               <!-- Nombre -->

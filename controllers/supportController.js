@@ -263,6 +263,15 @@ exports.getSoporteExito = (req, res) => {
 // POST /soporte — Procesar formulario y enviar correo
 // ────────────────────────────────────────────────────────────────────────────
 exports.postSoporte = async (req, res) => {
+    // ── 0. Filtro Honeypot (trampa para bots) ────────────────────────────────
+    const honeypot = (req.body.website || '').trim();
+    if (honeypot) {
+        const clientIp = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        console.warn(`[HONEYPOT] Bot detectado (IP: ${clientIp}). Campo trampa completado con: "${honeypot.slice(0, 50)}". Descartando solicitud silenciosamente.`);
+        // Simular éxito para no alertar al bot y evitar reintentos continuos
+        return res.redirect('/soporte-exito.html');
+    }
+
     // ── 1. Extraer y sanitizar campos ────────────────────────────────────────
     const nombre = sanitize(req.body.nombre || '');
     const correo = sanitize(req.body.correo || '');
