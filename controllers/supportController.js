@@ -29,6 +29,45 @@ function isValidEmail(email) {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
+// Validar token de Cloudflare Turnstile
+// ────────────────────────────────────────────────────────────────────────────
+async function verifyTurnstile(token, remoteIp) {
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    if (!secretKey) {
+        console.warn('[TURNSTILE] TURNSTILE_SECRET_KEY no configurada en .env. Se omite la validación.');
+        return { success: true };
+    }
+
+    if (!token) {
+        return { success: false, error: 'Token ausente' };
+    }
+
+    try {
+        const formData = new URLSearchParams();
+        formData.append('secret', secretKey);
+        formData.append('response', token);
+        if (remoteIp) {
+            const firstIp = remoteIp.split(',')[0].trim();
+            formData.append('remoteip', firstIp);
+        }
+
+        const cfRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
+
+        const outcome = await cfRes.json();
+        return outcome;
+    } catch (err) {
+        console.error('[TURNSTILE] Error al consultar Cloudflare API:', err.message || err);
+        return { success: false, error: 'Error de conexión' };
+    }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
 // Crear transporter SMTP reutilizable
 // ────────────────────────────────────────────────────────────────────────────
 function createTransporter() {
@@ -206,6 +245,7 @@ exports.getSoporte = (req, res) => {
     res.render('soporte', {
         title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
         path: '/soporte.html',
+        turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
     });
 };
 
@@ -229,10 +269,18 @@ exports.postSoporte = async (req, res) => {
     const empresa = sanitize(req.body.empresa || '');
     const asunto = sanitize(req.body.asunto || '');
     const descripcion = sanitize(req.body.descripcion || '');
+    const turnstileToken = req.body['cf-turnstile-response'] || '';
     const fecha = new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' });
 
-    // ── 2. Validaciones de backend ───────────────────────────────────────────
+    // ── 2. Validar Turnstile ────────────────────────────────────────────────
+    const clientIp = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const turnstileResult = await verifyTurnstile(turnstileToken, clientIp);
+
+    // ── 3. Validaciones de backend ───────────────────────────────────────────
     const errors = [];
+    if (!turnstileResult.success) {
+        errors.push('La verificación de seguridad ha fallado o expiró. Por favor completa el captcha nuevamente.');
+    }
     if (!nombre || nombre.length < 2) errors.push('El nombre es obligatorio (mínimo 2 caracteres).');
     if (!correo || !isValidEmail(correo)) errors.push('El correo electrónico no tiene un formato válido.');
     if (!empresa || empresa.length < 2) errors.push('La empresa es obligatoria.');
@@ -244,12 +292,13 @@ exports.postSoporte = async (req, res) => {
         return res.status(400).render('soporte', {
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
             path: '/soporte',
+            turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
             errors,
             formData: { nombre, correo, empresa, asunto, descripcion },
         });
     }
 
-    // ── 3. Validar archivo adjunto (si existe) ───────────────────────────────
+    // ── 4. Validar archivo adjunto (si existe) ───────────────────────────────
     let attachments = [];
     if (req.file) {
         const ext = path.extname(req.file.originalname).toLowerCase();
@@ -259,6 +308,7 @@ exports.postSoporte = async (req, res) => {
             return res.status(400).render('soporte', {
                 title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
                 path: '/soporte',
+                turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
                 errors: [`Extensión de archivo no permitida. Extensiones válidas: ${ALLOWED_EXTENSIONS.join(', ')}`],
                 formData: { nombre, correo, empresa, asunto, descripcion },
             });
@@ -268,6 +318,7 @@ exports.postSoporte = async (req, res) => {
             return res.status(400).render('soporte', {
                 title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
                 path: '/soporte',
+                turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
                 errors: [`El archivo supera el tamaño máximo permitido (${MAX_FILE_SIZE_MB} MB).`],
                 formData: { nombre, correo, empresa, asunto, descripcion },
             });
@@ -279,7 +330,7 @@ exports.postSoporte = async (req, res) => {
         });
     }
 
-    // ── 4. Construir y enviar el correo ──────────────────────────────────────
+    // ── 5. Construir y enviar el correo ──────────────────────────────────────
     const helpdeskEmail = process.env.HELPDESK_EMAIL;
 
     if (!helpdeskEmail || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
@@ -287,6 +338,7 @@ exports.postSoporte = async (req, res) => {
         return res.status(500).render('soporte', {
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
             path: '/soporte',
+            turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
             errors: ['Error interno del servidor. Por favor intente más tarde o contáctenos directamente.'],
             formData: { nombre, correo, empresa, asunto, descripcion },
         });
@@ -322,6 +374,7 @@ exports.postSoporte = async (req, res) => {
         res.status(500).render('soporte', {
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
             path: '/soporte.html',
+            turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
             errors: ['No se pudo enviar la solicitud. Por favor intente nuevamente o contáctenos directamente.'],
             formData: { nombre, correo, empresa, asunto, descripcion },
         });
