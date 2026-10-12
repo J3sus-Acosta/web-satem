@@ -28,6 +28,9 @@
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -795,7 +798,7 @@
 
             <!-- ── Cloudflare Turnstile ──────────────────────── -->
             <div class="turnstile-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1.25rem 0 0.5rem;">
-              <div class="cf-turnstile" data-sitekey="" data-theme="dark"></div>
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAFUxzTZ54QZfTiyW" data-theme="dark"></div>
               <div class="field-error" id="error-turnstile" style="display:none;font-size:0.78rem;color:#f87171;margin-top:0.4rem;text-align:center;"></div>
             </div>
 
@@ -1005,8 +1008,6 @@
       })();
     </script>
 
-    <!-- Cloudflare Turnstile API -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     
     </main>
