@@ -528,10 +528,10 @@
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
-          Mesa de Ayuda &middot; SATEM
+          Centro de Ayuda y Soporte &middot; SATEM
         </div>
-        <h1>Soporte al Cliente</h1>
-        <p>Completa el formulario con tu requerimiento y nuestro equipo te responderá a la brevedad.</p>
+        <h1>¿En qué te podemos ayudar hoy?</h1>
+        <p>Cuéntanos qué problema o requerimiento tienes y nuestro equipo técnico te responderá a la brevedad.</p>
       </div>
     </section>
 
@@ -548,19 +548,15 @@
             <div class="soporte-steps">
               <div class="soporte-step">
                 <div class="step-num"></div>
-                <p>Completa el formulario con la información de tu requerimiento.</p>
+                <p>Escríbenos qué falla o qué necesitas (con tus propias palabras y sin tecnicismos).</p>
               </div>
               <div class="soporte-step">
                 <div class="step-num"></div>
-                <p>Tu solicitud se convierte automáticamente en un ticket de Soporte.</p>
+                <p>Tu solicitud se asigna de inmediato a un especialista técnico.</p>
               </div>
               <div class="soporte-step">
                 <div class="step-num"></div>
-                <p>Nuestro equipo analiza y gestiona tu caso en la mesa de ayuda.</p>
-              </div>
-              <div class="soporte-step">
-                <div class="step-num"></div>
-                <p>Recibirás la respuesta directamente en tu correo electrónico.</p>
+                <p>Analizamos el problema y te contactamos directamente a tu correo con la solución.</p>
               </div>
             </div>
           </div>
@@ -611,9 +607,9 @@
 
         <!-- ── Formulario principal ─────────────────────── -->
         <div class="soporte-form-card">
-          <h2>Nueva Solicitud de Soporte</h2>
+          <h2>Solicitud de Ayuda Técnica</h2>
           <p class="form-subtitle">
-            Los campos con <span style="color:#f87171;">*</span> son obligatorios.
+            Cuéntanos qué sucede. Los campos con <span style="color:#f87171;">*</span> son obligatorios.
           </p>
 
           <!-- Contenedor de errores del servidor (poblado por JS) -->
@@ -676,9 +672,9 @@
               <!-- Asunto -->
               <div class="form-group">
                 <label for="asunto">
-                  Asunto del ticket <span class="required-dot">*</span>
+                  ¿Cuál es el problema o solicitud? <span class="required-dot">*</span>
                 </label>
-                <input type="text" id="asunto" name="asunto" placeholder="Ej: Error al generar reportes" maxlength="200"
+                <input type="text" id="asunto" name="asunto" placeholder="Ej: El sistema de facturación muestra un error" maxlength="200"
                   required>
                 <div class="field-error" id="error-asunto"
                   style="display:none;font-size:0.78rem;color:#f87171;margin-top:0.35rem;"></div>
@@ -687,10 +683,10 @@
               <!-- Descripción -->
               <div class="form-group full-width">
                 <label for="descripcion">
-                  Descripción detallada <span class="required-dot">*</span>
+                  Explícanos con detalle qué ocurrió <span class="required-dot">*</span>
                 </label>
                 <textarea id="descripcion" name="descripcion"
-                  placeholder="Describe con detalle el problema o requerimiento. Incluye pasos para reproducirlo si aplica."
+                  placeholder="Cuéntanos qué estabas haciendo y qué mensaje o falla viste en pantalla. Si aplica, dinos qué intentaste hacer para solucionarlo."
                   maxlength="5000" required></textarea>
                 <div class="field-error" id="error-descripcion"
                   style="display:none;font-size:0.78rem;color:#f87171;margin-top:0.35rem;"></div>
@@ -746,7 +742,7 @@
 
             <button type="submit" class="btn-submit-soporte" id="submit-btn">
               <div class="spinner"></div>
-              <span id="submit-label">Enviar Solicitud</span>
+              <span id="submit-label">Enviar Solicitud de Ayuda</span>
               <svg class="btn-send-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
