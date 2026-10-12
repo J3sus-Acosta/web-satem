@@ -1,6 +1,8 @@
-<% /* Pre-evaluar variables dinámicas ANTES del template literal */ var _errors=(typeof errors !=='undefined' &&
-  Array.isArray(errors)) ? errors : []; var _fd=(typeof formData !=='undefined' && formData) ? formData : { nombre: '' ,
-  correo: '' , empresa: '' , asunto: '' , descripcion: '' }; %>
+<% /* Pre-evaluar variables dinámicas ANTES del template literal */ 
+  var _errors = (typeof errors !== 'undefined' && Array.isArray(errors)) ? errors : []; 
+  var _fd = (typeof formData !== 'undefined' && formData) ? formData : { nombre: '', correo: '', empresa: '', asunto: '', descripcion: '' }; 
+  var _turnstileSiteKey = (typeof turnstileSiteKey !== 'undefined' && turnstileSiteKey) ? turnstileSiteKey : ((typeof process !== 'undefined' && process.env && process.env.TURNSTILE_SITE_KEY) ? process.env.TURNSTILE_SITE_KEY : '');
+%>
   <%- include('layout', {body: ` <!-- ══════════════════════════════════════════════════ Estilos de la página de soporte
     ═══════════════════════════════════════════════════ -->
     <style>
@@ -730,6 +732,12 @@
 
             </div><!-- /form-grid-2 -->
 
+            <!-- ── Cloudflare Turnstile ──────────────────────── -->
+            <div class="turnstile-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1.25rem 0 0.5rem;">
+              <div class="cf-turnstile" data-sitekey="${ _turnstileSiteKey }" data-theme="dark"></div>
+              <div class="field-error" id="error-turnstile" style="display:none;font-size:0.78rem;color:#f87171;margin-top:0.4rem;text-align:center;"></div>
+            </div>
+
             <button type="submit" class="btn-submit-soporte" id="submit-btn">
               <div class="spinner"></div>
               <span id="submit-label">Enviar Solicitud</span>
@@ -886,6 +894,18 @@
             if (!desc.value.trim() || desc.value.trim().length < 10) {
               showError('descripcion', 'La descripción debe tener al menos 10 caracteres.'); valid = false;
             } else hideError('descripcion');
+
+            /* Verificación de Turnstile si está activo */
+            var turnstileWidget = document.querySelector('.cf-turnstile');
+            if (turnstileWidget && turnstileWidget.getAttribute('data-sitekey')) {
+              var turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
+              if (!turnstileInput || !turnstileInput.value) {
+                showError('turnstile', 'Por favor completa la verificación de seguridad antes de enviar.');
+                valid = false;
+              } else {
+                hideError('turnstile');
+              }
+            }
 
             if (!valid) {
               e.preventDefault();

@@ -1,6 +1,7 @@
 const ejs = require('ejs');
 const fs = require('fs-extra');
 const path = require('path');
+require('dotenv').config();
 
 const distDir = path.join(__dirname, 'dist');
 const viewsDir = path.join(__dirname, 'views');
@@ -71,6 +72,7 @@ async function build() {
             ...data,
             title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
             path: '/soporte',
+            turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
             filename: soporteTemplatePath
         });
 
