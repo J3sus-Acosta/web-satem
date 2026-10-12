@@ -1,0 +1,10 @@
+# robots.txt para SATEM Soluciones Inteligentes (https://satemsoluciones.com)
+User-agent: *
+Allow: /
+
+# Evitar indexación de páginas privadas o de confirmación transaccional
+Disallow: /soporte/exito
+Disallow: /gracias
+
+# Ubicación del mapa del sitio
+Sitemap: https://satemsoluciones.com/sitemap.xml

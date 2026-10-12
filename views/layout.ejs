@@ -7,13 +7,93 @@
     <title>
         <%= title %>
     </title>
-    <meta name="description"
-        content="SATEM Soluciones Inteligentes - Asesoría tecnológica, automatización con IA y soporte continuo para empresas sin enredos técnicos.">
+    <% 
+        const metaDesc = typeof description !== 'undefined' ? description : 'SATEM Soluciones Inteligentes - Asesoría tecnológica, automatización con IA y soporte continuo para empresas sin enredos técnicos.';
+        const canonical = typeof canonicalUrl !== 'undefined' ? canonicalUrl : ('https://satemsoluciones.com' + (typeof path !== 'undefined' && path !== '/' ? path : ''));
+        const robotsDirectives = typeof robots !== 'undefined' ? robots : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+        const pageKeywords = typeof keywords !== 'undefined' ? keywords : 'automatización inteligencia artificial chile, consultoría TI pymes santiago, soporte técnico empresas, integración de software crm, mesa de ayuda chile, asesoria tecnologica';
+        const ogImg = typeof ogImage !== 'undefined' ? ogImage : 'https://satemsoluciones.com/img/logo.png';
+        const ogCardType = typeof ogType !== 'undefined' ? ogType : 'website';
+    %>
+    <meta name="description" content="<%= metaDesc %>">
+    <meta name="keywords" content="<%= pageKeywords %>">
+    <meta name="robots" content="<%= robotsDirectives %>">
+    <link rel="canonical" href="<%= canonical %>">
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:site_name" content="SATEM Soluciones Inteligentes">
+    <meta property="og:type" content="<%= ogCardType %>">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= metaDesc %>">
+    <meta property="og:url" content="<%= canonical %>">
+    <meta property="og:image" content="<%= ogImg %>">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= title %>">
+    <meta name="twitter:description" content="<%= metaDesc %>">
+    <meta name="twitter:image" content="<%= ogImg %>">
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="shortcut icon" href="/img/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
     <link rel="manifest" href="/img/site.webmanifest" />
+
+    <!-- Datos Estructurados Schema.org (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://satemsoluciones.com/#organization",
+          "name": "SATEM Soluciones Inteligentes",
+          "url": "https://satemsoluciones.com",
+          "logo": "https://satemsoluciones.com/img/logo.png",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+56-9-7190-7865",
+              "contactType": "customer service",
+              "email": "contacto@satemsoluciones.com",
+              "areaServed": "CL",
+              "availableLanguage": "Spanish"
+            }
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://satemsoluciones.com/#service",
+          "name": "SATEM Soluciones Inteligentes",
+          "url": "https://satemsoluciones.com",
+          "parentOrganization": {
+            "@id": "https://satemsoluciones.com/#organization"
+          },
+          "description": "Asesoría tecnológica, automatización de procesos con inteligencia artificial y soporte continuo para empresas.",
+          "priceRange": "$$",
+          "telephone": "+56-9-7190-7865",
+          "email": "contacto@satemsoluciones.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CL"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://satemsoluciones.com/#website",
+          "url": "https://satemsoluciones.com",
+          "name": "SATEM Soluciones Inteligentes",
+          "publisher": {
+            "@id": "https://satemsoluciones.com/#organization"
+          },
+          "inLanguage": "es-CL"
+        }
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

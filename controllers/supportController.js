@@ -243,8 +243,10 @@ function buildEmailHTML(data, file) {
 // ────────────────────────────────────────────────────────────────────────────
 exports.getSoporte = (req, res) => {
     res.render('soporte', {
-        title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
-        path: '/soporte.html',
+        title: 'Centro de Ayuda y Soporte al Cliente | SATEM Soluciones Inteligentes',
+        description: 'Solicita ayuda técnica para tu empresa. Resolveremos tus requerimientos y dudas de forma rápida, clara y sin complicaciones.',
+        canonicalUrl: 'https://satemsoluciones.com/soporte',
+        path: '/soporte',
         turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
     });
 };
@@ -254,8 +256,11 @@ exports.getSoporte = (req, res) => {
 // ────────────────────────────────────────────────────────────────────────────
 exports.getSoporteExito = (req, res) => {
     res.render('soporte-exito', {
-        title: 'Solicitud Recibida | SATEM Soluciones Inteligentes',
-        path: '/soporte-exito.html',
+        title: 'Solicitud Recibida con Éxito | SATEM Soluciones Inteligentes',
+        description: 'Confirmación de solicitud de soporte recibida por el equipo de SATEM.',
+        canonicalUrl: 'https://satemsoluciones.com/soporte/exito',
+        robots: 'noindex, follow',
+        path: '/soporte/exito',
     });
 };
 

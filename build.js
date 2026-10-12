@@ -7,9 +7,11 @@ const distDir = path.join(__dirname, 'dist');
 const viewsDir = path.join(__dirname, 'views');
 const publicDir = path.join(__dirname, 'public');
 
-// Data for the views (mirrors what's in controllers/mainController.js)
-const data = {
-    title: 'SATEM Soluciones Inteligentes | Consultoría TI & Automatización IA',
+// Data defaults for views
+const baseData = {
+    title: 'SATEM Soluciones Inteligentes | Asesoría TI, Automatización IA & Soporte',
+    description: 'Soluciones tecnológicas y automatización con inteligencia artificial para empresas. Ahorra tiempo, optimiza procesos y recibe soporte sin enredos técnicos.',
+    canonicalUrl: 'https://satemsoluciones.com',
     path: '/'
 };
 
@@ -19,7 +21,7 @@ async function build() {
         await fs.emptyDir(distDir);
         console.log('Cleaned dist directory');
 
-        // 2. Copy public assets
+        // 2. Copy public assets (includes robots.txt, sitemap.xml, css, js, img)
         await fs.copy(publicDir, distDir);
         console.log('Copied public assets');
 
@@ -27,9 +29,8 @@ async function build() {
         const templatePath = path.join(viewsDir, 'index.ejs');
         const outputPath = path.join(distDir, 'index.html');
 
-        // index.ejs already includes layout.ejs, so we just render it directly.
         const html = await ejs.renderFile(templatePath, {
-            ...data,
+            ...baseData,
             filename: templatePath
         });
 
@@ -41,8 +42,10 @@ async function build() {
         const policyOutputPath = path.join(distDir, 'policy', 'index.html');
 
         const policyHtml = await ejs.renderFile(policyTemplatePath, {
-            ...data,
+            ...baseData,
             title: 'Política de Privacidad | SATEM Soluciones Inteligentes',
+            description: 'Conoce nuestra política de privacidad y el tratamiento transparente y seguro de tus datos en SATEM Soluciones Inteligentes.',
+            canonicalUrl: 'https://satemsoluciones.com/policy',
             path: '/policy',
             filename: policyTemplatePath
         });
@@ -55,8 +58,11 @@ async function build() {
         const graciasOutputPath = path.join(distDir, 'gracias', 'index.html');
 
         const graciasHtml = await ejs.renderFile(graciasTemplatePath, {
-            ...data,
+            ...baseData,
             title: '¡Consultoría Agendada! | SATEM Soluciones Inteligentes',
+            description: 'Confirmación de consultoría agendada con el equipo de SATEM Soluciones Inteligentes.',
+            canonicalUrl: 'https://satemsoluciones.com/gracias',
+            robots: 'noindex, follow',
             path: '/gracias',
             filename: graciasTemplatePath
         });
@@ -69,8 +75,10 @@ async function build() {
         const soporteOutputPath = path.join(distDir, 'soporte', 'index.html');
 
         const soporteHtml = await ejs.renderFile(soporteTemplatePath, {
-            ...data,
-            title: 'Soporte al Cliente | SATEM Soluciones Inteligentes',
+            ...baseData,
+            title: 'Centro de Ayuda y Soporte al Cliente | SATEM Soluciones Inteligentes',
+            description: 'Solicita ayuda técnica para tu empresa. Resolveremos tus requerimientos y dudas de forma rápida, clara y sin complicaciones.',
+            canonicalUrl: 'https://satemsoluciones.com/soporte',
             path: '/soporte',
             turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
             filename: soporteTemplatePath
@@ -84,8 +92,11 @@ async function build() {
         const soporteExitoOutputPath = path.join(distDir, 'soporte', 'exito', 'index.html');
 
         const soporteExitoHtml = await ejs.renderFile(soporteExitoTemplatePath, {
-            ...data,
-            title: 'Solicitud Recibida | SATEM Soluciones Inteligentes',
+            ...baseData,
+            title: 'Solicitud Recibida con Éxito | SATEM Soluciones Inteligentes',
+            description: 'Confirmación de solicitud de soporte recibida por el equipo de SATEM.',
+            canonicalUrl: 'https://satemsoluciones.com/soporte/exito',
+            robots: 'noindex, follow',
             path: '/soporte/exito',
             filename: soporteExitoTemplatePath
         });
